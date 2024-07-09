@@ -1,7 +1,16 @@
+import { Outlet } from "react-router-dom";
+import Container from "./components/Container";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+
 function App() {
   return (
-    <div className="sm:container px-1">
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+    <div className="">
+      <Header />
+      <Container>
+        <Outlet />
+      </Container>
+      <Footer />
     </div>
   );
 }
