@@ -52,6 +52,16 @@ const Header = () => {
               <li className="text-base text-[#111111]">
                 <Link to="/dashboard">Dashboard</Link>
               </li>
+              <li className="text-base text-[#111111]">
+                <ScrollLink to="category" smooth={true} duration={500}>
+                  Category
+                </ScrollLink>
+              </li>
+              <li className="text-base text-[#111111]">
+                <ScrollLink to="gallery" smooth={true} duration={500}>
+                  Image Gallery
+                </ScrollLink>
+              </li>
             </ul>
           </div>
           <Link to="/" className=" text-xl font-bold text-[#111111] ">
@@ -74,6 +84,11 @@ const Header = () => {
             <li className="text-base text-[#111111]">
               <ScrollLink to="category" smooth={true} duration={500}>
                 Category
+              </ScrollLink>
+            </li>
+            <li className="text-base text-[#111111]">
+              <ScrollLink to="gallery" smooth={true} duration={500}>
+                Image Gallery
               </ScrollLink>
             </li>
           </ul>

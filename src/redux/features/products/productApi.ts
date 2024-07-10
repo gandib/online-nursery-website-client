@@ -10,6 +10,7 @@ const productApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["product"],
     }),
+
     getAllProducts: builder.query({
       query: (query) => {
         console.log(
@@ -28,18 +29,21 @@ const productApi = baseApi.injectEndpoints({
       },
       providesTags: ["product"],
     }),
+
+    getSingleProduct: builder.query({
+      query: (id) => {
+        return {
+          url: `/products/${id}`,
+          method: "GET",
+        };
+      },
+      providesTags: ["product"],
+    }),
+
     getAllCategories: builder.query({
       query: () => {
         return {
           url: `/products/categories`,
-          method: "GET",
-        };
-      },
-    }),
-    filterProducts: builder.query({
-      query: (query) => {
-        return {
-          url: `/products?category=${query?.category}`,
           method: "GET",
         };
       },

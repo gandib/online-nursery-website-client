@@ -6,17 +6,6 @@ import productApi from "../../redux/features/products/productApi";
 import debounce from "lodash.debounce";
 
 export type TProduct = {
-  product: {
-    _id: string;
-    title: string;
-    category: string;
-    description: string;
-    price: number;
-    rating: number;
-    image: string;
-    quantity: number;
-    isDeleted: boolean;
-  };
   _id: string;
   title: string;
   category: string;
@@ -49,8 +38,6 @@ const Products = () => {
     setPage(e.selected + 1);
   };
 
-  console.log(sort);
-
   const [click, setClick] = useState(false);
 
   const menuClick = () => {
@@ -58,7 +45,7 @@ const Products = () => {
   };
 
   //  for debounce api call
-  const debouncedSetQuery = debounce(setSearch, 3000);
+  const debouncedSetQuery = debounce(setSearch, 2000);
 
   const handleSearch = (e: FormEvent) => {
     const { value }: any = e.target;
@@ -140,24 +127,22 @@ const Products = () => {
               )}
             </ul>
           </div>
-
-          {/* <div>
-            <details className="dropdown dropdown-end">
-              <summary className="btn m-1 bg-[#0080ff] text-white text-xl font-bold">
-                Filter by
-              </summary>
-              <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow gap-2">
-                <li>
-                  <button>category</button>
-                </li>
-              </ul>
-            </details>
-          </div> */}
         </div>
       </div>
       <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-4">
         {data?.data?.map((product: TProduct) => (
-          <Card product={product} key={product._id} />
+          <Card
+            title={product?.title}
+            image={product?.image}
+            price={product?.price}
+            rating={product?.rating}
+            key={product?._id}
+            _id={product?._id}
+            category={""}
+            description={""}
+            quantity={0}
+            isDeleted={false}
+          />
         ))}
       </div>
 
