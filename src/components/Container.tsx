@@ -4,7 +4,7 @@ type TContainerProps = {
   children: ReactNode;
 };
 const Container = ({ children }: TContainerProps) => {
-  return <div className="h-screen sm:container px-2">{children}</div>;
+  return <div className="min-h-screen sm:container px-2">{children}</div>;
 };
 
 export default Container;

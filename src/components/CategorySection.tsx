@@ -1,6 +1,6 @@
 const CategorySection = () => {
   return (
-    <section id="category" className="mt-[600px]">
+    <section id="category" className="">
       <h1>Hello, CategorySection!</h1>
     </section>
   );

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const ErrorElement = () => {
   return (
-    <div className="sm:container px-1 h-screen flex justify-center items-center">
+    <div className="sm:container px-1 min-h-screen flex justify-center items-center">
       <div>
         <h1 className="text-red-500 text-3xl font-semibold">
           Opps! Not Found!
