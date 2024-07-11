@@ -17,10 +17,12 @@ type TProduct = {
 
 type TInitialState = {
   products: TProduct[];
+  cartTotal: number[];
 };
 
 const initialState: TInitialState = {
   products: [],
+  cartTotal: [],
 };
 const productCartSlice = createSlice({
   name: "product",

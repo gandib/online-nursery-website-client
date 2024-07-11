@@ -5,6 +5,7 @@ import {
   decreasePrice,
   removeProduct,
 } from "../../redux/features/productCartSlice";
+import { useNavigate } from "react-router-dom";
 
 type TProduct = {
   _id: string;
@@ -23,6 +24,7 @@ type TProduct = {
 const Cart = () => {
   const { products } = useAppSelector((state) => state.cartProduct);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   //   const cartTotalPrice = products.reduce((prev, current) => {
   //     prev.totalPrice + current.totalPrice;
@@ -120,7 +122,10 @@ const Cart = () => {
             <p className="text-xl text-[#111111]">{cartTotalPrice}</p>
           </div>
           <div>
-            <button className="btn bg-[#0080ff] text-white font-bold text-xl w-full">
+            <button
+              onClick={() => navigate("/checkout")}
+              className="btn bg-[#0080ff] text-white font-bold text-xl w-full"
+            >
               Proceed To Checkout
             </button>
           </div>

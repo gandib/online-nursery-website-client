@@ -79,13 +79,13 @@ const ProductModal = ({ updateProduct, addProduct, productId, setId }: any) => {
                 name="category"
                 className="input input-bordered w-full max-w-10/12 mb-1"
               />
-              <input
-                type="text"
+              <textarea
+                // type="text"
                 onChange={(e) => setDescription(e.target.value)}
                 value={description}
                 placeholder="Description"
                 name="description"
-                className="input input-bordered w-full max-w-10/12 mb-1"
+                className="textarea textarea-bordered h-24 w-full max-w-10/12 mb-1"
               />
               <input
                 type="number"

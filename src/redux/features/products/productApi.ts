@@ -72,6 +72,16 @@ const productApi = baseApi.injectEndpoints({
         };
       },
     }),
+
+    addOrder: builder.mutation({
+      query: (data) => {
+        return {
+          url: `/orders/create-order`,
+          method: "POST",
+          body: data,
+        };
+      },
+    }),
   }),
 });
 
