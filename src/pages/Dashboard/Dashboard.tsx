@@ -1,13 +1,65 @@
+import { useState } from "react";
+import productApi from "../../redux/features/products/productApi";
+import { TProduct } from "../Products/Products";
+import Modal from "../../components/Modal";
+import ProductModal from "../../components/ProductModal";
+
 const Dashboard = () => {
+  const [id, setId] = useState("");
+
+  const { data, isLoading } = productApi.useGetAllProductsQuery(undefined);
+  const [deleteProduct] = productApi.useDeleteProductMutation();
+  const [createProduct] = productApi.useAddProductMutation();
+  const [editProduct] = productApi.useUpdateProductMutation();
+
+  const handlerDelete = (productId: string) => {
+    setId(productId);
+    (document.getElementById("my_modal_1") as HTMLDialogElement).showModal();
+  };
+
+  const handlerAddProduct = () => {
+    setId("");
+    (document.getElementById("my_modal_2") as HTMLDialogElement).showModal();
+  };
+
+  const handlerUpdate = (productId: string) => {
+    setId(productId);
+    (document.getElementById("my_modal_2") as HTMLDialogElement).showModal();
+  };
+
+  const confirmDelete = () => {
+    deleteProduct(id);
+  };
+
+  const addProduct = (data: TProduct) => {
+    createProduct(data);
+  };
+
+  const updateProduct = (data: TProduct) => {
+    console.log(data);
+    editProduct(data);
+  };
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center">
+        <span className="loading loading-spinner text-success"></span>
+      </div>
+    );
+  }
+
   return (
-    <div>
+    <div className="my-8">
       <h1 className="flex justify-center text-[#111111] sm:text-3xl text-xl font-bold p-2">
         Product and Category Management
       </h1>
 
       <div className="sm:container">
         <div className="flex justify-end mt-4">
-          <button className="btn bg-[#0080ff] text-white sm:text-xl font-bold hover:text-[#111111]">
+          <button
+            onClick={handlerAddProduct}
+            className="btn bg-[#0080ff] text-white sm:text-xl font-bold hover:text-[#111111]"
+          >
             Add Product
           </button>
         </div>
@@ -34,30 +86,43 @@ const Dashboard = () => {
               </thead>
               <tbody>
                 {/* row 1 */}
-                <tr>
-                  <th>
-                    <label>
-                      <input type="checkbox" className="checkbox" />
-                    </label>
-                  </th>
-                  <td>
-                    <div className="flex items-center gap-3">
-                      <div className="avatar">
-                        <div className="mask mask-squircle h-12 w-12">
-                          <img
-                            src="https://img.daisyui.com/tailwind-css-component-profile-2@56w.png"
-                            alt="Avatar Tailwind CSS Component"
-                          />
+                {data?.data?.map((product: TProduct) => (
+                  <tr key={product?._id}>
+                    <th>
+                      <label>
+                        <input type="checkbox" className="checkbox" />
+                      </label>
+                    </th>
+                    <td>
+                      <div className="flex items-center gap-3">
+                        <div className="avatar">
+                          <div className="mask mask-squircle h-12 w-12">
+                            <img src={product?.image} alt={product?.title} />
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </td>
-                  <td>Zemlak, Daniel and Leannon</td>
-                  <td>$: 30</td>
-                  <td>Fruits</td>
-                  <th>Edit</th>
-                  <th>Delete</th>
-                </tr>
+                    </td>
+                    <td>{product.title}</td>
+                    <td>$: {product.price}</td>
+                    <td>{product.category}</td>
+                    <th>
+                      <button
+                        onClick={() => handlerUpdate(product?._id)}
+                        className="btn bg-[#0080ff]"
+                      >
+                        Edit
+                      </button>
+                    </th>
+                    <th>
+                      <button
+                        onClick={() => handlerDelete(product?._id)}
+                        className="btn btn-error"
+                      >
+                        Delete
+                      </button>
+                    </th>
+                  </tr>
+                ))}
               </tbody>
               {/* foot */}
               <tfoot>
@@ -76,6 +141,14 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+
+      <Modal confirmDelete={confirmDelete} />
+      <ProductModal
+        updateProduct={updateProduct}
+        productId={id}
+        setId={setId}
+        addProduct={addProduct}
+      />
     </div>
   );
 };

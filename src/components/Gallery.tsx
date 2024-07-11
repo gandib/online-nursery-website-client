@@ -1,7 +1,7 @@
 const Gallery = () => {
   return (
     <div id="gallery">
-      <h1 className="text-5xl font-bold text-[#111111] my-6">Image Gallery</h1>
+      <h1 className="text-4xl font-bold text-[#111111] my-6">Image Gallery</h1>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 shadow-xl border rounded-2xl">
         <div className="grid gap-4">
@@ -15,14 +15,14 @@ const Gallery = () => {
           <div>
             <img
               className="h-auto max-w-full rounded-lg"
-              src="https://treesdirect.co.uk/app/uploads/2018/02/Myrtle-Ornamental-278x240.jpg"
+              src="https://www.thetreecenter.com/c/uploads/2020/01/Olympic_Fire_Mountain_Laurel_5G_01-1-340x453.jpg"
               alt=""
             />
           </div>
           <div>
             <img
               className="h-auto  rounded-lg "
-              src="https://treesdirect.co.uk/app/uploads/2018/02/Standard-Lemon-278x240.jpg"
+              src="https://www.thetreecenter.com/c/uploads/sensitive-fern-1-450x450.webp"
               alt=""
             />
           </div>
@@ -68,7 +68,7 @@ const Gallery = () => {
           <div>
             <img
               className="h-auto max-w-full rounded-lg"
-              src="https://www.thetreecenter.com/c/uploads/sensitive-fern-1-450x450.webp"
+              src="https://www.thetreecenter.com/c/uploads/2022/03/Echinacea_Lakota_Fire_2-copy-600x600.jpg"
               alt=""
             />
           </div>
@@ -77,7 +77,7 @@ const Gallery = () => {
           <div>
             <img
               className="h-auto max-w-full rounded-lg"
-              src="https://www.thetreecenter.com/c/uploads/2022/03/Echinacea_Lakota_Fire_2-copy-600x600.jpg"
+              src="https://www.thetreecenter.com/c/uploads/2022/06/Zig_Zag_Cactus_6in_01-1-jpg-340x453.webp"
               alt=""
             />
           </div>

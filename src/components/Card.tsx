@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { TProduct } from "../pages/Products/Products";
+import { useAppDispatch } from "../redux/hooks";
+import { addProduct } from "../redux/features/productCartSlice";
 
 const Card = ({
   title,
@@ -9,9 +11,29 @@ const Card = ({
   category,
   description,
   _id,
+  quantity,
+  isDeleted,
 }: TProduct) => {
   //   const { title, image, price, rating } = product.product;
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const data = {
+    title,
+    image,
+    price,
+    rating,
+    category,
+    description,
+    _id,
+    quantity,
+    isDeleted,
+  };
+
+  const handleCart = () => {
+    dispatch(addProduct(data));
+    navigate("/cart");
+  };
 
   return (
     <div
@@ -72,7 +94,7 @@ const Card = ({
             </button>
           )}
           <button
-            onClick={() => navigate(`/cart/${_id}`)}
+            onClick={handleCart}
             className="btn text-xl font-bold bg-[#0080ff] text-white hover:text-[#111111]"
           >
             Add to Cart

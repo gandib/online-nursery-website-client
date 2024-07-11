@@ -30,7 +30,7 @@ const Products = () => {
     searchTerm: search,
   };
 
-  const { data } = productApi.useGetAllProductsQuery(query);
+  const { data, isLoading } = productApi.useGetAllProductsQuery(query);
   const { data: categories } = productApi.useGetAllCategoriesQuery(undefined);
   console.log(data);
 
@@ -51,6 +51,14 @@ const Products = () => {
     const { value }: any = e.target;
     debouncedSetQuery(value);
   };
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center">
+        <span className="loading loading-spinner text-success"></span>
+      </div>
+    );
+  }
 
   return (
     <div className="mt-6">
@@ -118,8 +126,8 @@ const Products = () => {
               </li>
               {categories?.data[0]?.categories.map(
                 (category: string, index: number) => (
-                  <li>
-                    <button key={index} onClick={() => setFilter(category)}>
+                  <li key={index}>
+                    <button onClick={() => setFilter(category)}>
                       {category}
                     </button>
                   </li>
@@ -138,10 +146,10 @@ const Products = () => {
             rating={product?.rating}
             key={product?._id}
             _id={product?._id}
-            category={""}
+            category={product?.category}
             description={""}
-            quantity={0}
-            isDeleted={false}
+            quantity={product?.quantity}
+            isDeleted={product?.isDeleted}
           />
         ))}
       </div>

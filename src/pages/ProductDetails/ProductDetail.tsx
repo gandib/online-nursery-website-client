@@ -5,7 +5,15 @@ import productApi from "../../redux/features/products/productApi";
 const ProductDetail = () => {
   const { id } = useParams();
   console.log(id);
-  const { data } = productApi.useGetSingleProductQuery(id);
+  const { data, isLoading } = productApi.useGetSingleProductQuery(id);
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center">
+        <span className="loading loading-spinner text-success"></span>
+      </div>
+    );
+  }
 
   console.log(data);
   return (
@@ -21,8 +29,8 @@ const ProductDetail = () => {
           _id={data?.data?._id}
           category={data?.data?.category}
           description={data?.data?.description}
-          quantity={0}
-          isDeleted={false}
+          quantity={data?.data?.quantity}
+          isDeleted={data?.data?.isDeleted}
         />
       </div>
     </div>

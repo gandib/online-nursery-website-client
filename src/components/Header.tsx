@@ -53,6 +53,9 @@ const Header = () => {
                 <Link to="/dashboard">Dashboard</Link>
               </li>
               <li className="text-base text-[#111111]">
+                <Link to="/cart">Cart</Link>
+              </li>
+              <li className="text-base text-[#111111]">
                 <ScrollLink to="category" smooth={true} duration={500}>
                   Category
                 </ScrollLink>
@@ -80,6 +83,9 @@ const Header = () => {
             </li>
             <li className="text-base text-[#111111]">
               <Link to="/dashboard">Dashboard</Link>
+            </li>
+            <li className="text-base text-[#111111]">
+              <Link to="/cart">Cart</Link>
             </li>
             <li className="text-base text-[#111111]">
               <ScrollLink to="category" smooth={true} duration={500}>
