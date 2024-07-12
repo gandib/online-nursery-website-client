@@ -4,7 +4,7 @@ export const baseApi = createApi({
   reducerPath: "baseApi",
   tagTypes: ["product"],
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000/api",
+    baseUrl: "https://online-nursery-website-server.vercel.app/api",
   }),
   endpoints: () => ({}),
 });
