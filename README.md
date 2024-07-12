@@ -106,7 +106,7 @@ The Online Nursery Website is designed to provide a seamless online shopping exp
 ## Usage
 
 1. **Access the website:**
-   Open your web browser and navigate to `http://localhost:3000`.
+   Open your web browser and navigate to Live client site `https://online-nursery-website-client.vercel.app/`. and live backend site `https://online-nursery-website-server.vercel.app`
 
 2. **Browse Products:**
    Explore the product catalog and view detailed information.
