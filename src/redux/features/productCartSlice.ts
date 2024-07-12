@@ -11,8 +11,8 @@ type TProduct = {
   image: string;
   quantity: number;
   isDeleted: boolean;
-  totalPrice: number;
-  newQuantity: number;
+  totalPrice?: number;
+  newQuantity?: number;
 };
 
 type TInitialState = {
@@ -46,8 +46,8 @@ const productCartSlice = createSlice({
       );
 
       if (existing?._id === action.payload._id) {
-        existing!.totalPrice = existing?.totalPrice + action.payload.price;
-        existing!.newQuantity = existing?.newQuantity + 1;
+        existing!.totalPrice = existing.totalPrice! + action.payload.price;
+        existing!.newQuantity = existing.newQuantity! + 1;
       }
     },
     decreasePrice: (state, action: PayloadAction<TProduct>) => {
@@ -56,8 +56,8 @@ const productCartSlice = createSlice({
       );
 
       if (existing?._id === action.payload._id) {
-        existing!.totalPrice = existing?.totalPrice - action.payload.price;
-        existing!.newQuantity = existing?.newQuantity - 1;
+        existing!.totalPrice = existing.totalPrice! - action.payload.price;
+        existing!.newQuantity = existing.newQuantity! - 1;
       }
     },
     removeProduct: (state, action: PayloadAction<string>) => {

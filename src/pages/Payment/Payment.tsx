@@ -9,9 +9,9 @@ const Payment = () => {
 
   const handlePayment = () => {
     if (paymentType === "cod") {
-      toast("Your selected Cash on Delivery!");
+      toast("Congrats! You selected Cash on Delivery!");
     } else {
-      toast("Your payment successful!");
+      toast("Congrats! Your payment successful!");
     }
     navigate("/");
   };
@@ -56,6 +56,7 @@ const Payment = () => {
           </div>
         </div>
       </div>
+      {/* <ToastContainer /> */}
     </div>
   );
 };

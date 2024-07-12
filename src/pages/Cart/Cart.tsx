@@ -6,6 +6,7 @@ import {
   removeProduct,
 } from "../../redux/features/productCartSlice";
 import { useNavigate } from "react-router-dom";
+import useBeforeUnload from "../../utils/useBeforeUnload";
 
 type TProduct = {
   _id: string;
@@ -17,8 +18,8 @@ type TProduct = {
   image: string;
   quantity: number;
   isDeleted: boolean;
-  totalPrice: number;
-  newQuantity: number;
+  totalPrice?: number;
+  newQuantity?: number;
 };
 
 const Cart = () => {
@@ -33,10 +34,14 @@ const Cart = () => {
   let cartTotalPrice = 0;
   for (let index = 0; index < products.length; index++) {
     const element = products[index];
-    cartTotalPrice = cartTotalPrice! + element.totalPrice;
+    cartTotalPrice = cartTotalPrice! + element.totalPrice!;
   }
 
   console.log(cartTotalPrice);
+
+  useBeforeUnload(
+    "If you refresh the page, any data in your cart may be lost. Are you sure you want to proceed?"
+  );
 
   return (
     <div className="my-8">
@@ -74,7 +79,7 @@ const Cart = () => {
                     <div className="flex justify-center items-center bg-slate-200 p-2 rounded-full">
                       <button
                         onClick={() => {
-                          if (product.newQuantity > 1) {
+                          if (product.newQuantity! > 1) {
                             dispatch(decreasePrice(product));
                           }
                         }}
@@ -86,7 +91,7 @@ const Cart = () => {
                       <p className="mr-4 text-lg">{product.newQuantity}</p>
                       <button
                         onClick={() => {
-                          if (product.newQuantity < product.quantity) {
+                          if (product.newQuantity! < product.quantity) {
                             dispatch(addPrice(product));
                           }
                         }}
