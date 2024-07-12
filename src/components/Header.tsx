@@ -49,18 +49,18 @@ const Header = () => {
               <li className="text-base text-[#111111] mb-2">
                 <Link to="/products">Products</Link>
               </li>
-              <li className="text-base text-[#111111]">
+              <li className="text-base text-[#111111] mb-2">
                 <Link to="/dashboard">Dashboard</Link>
               </li>
-              <li className="text-base text-[#111111]">
+              <li className="text-base text-[#111111] mb-2">
                 <Link to="/cart">Cart</Link>
               </li>
-              <li className="text-base text-[#111111]">
+              <li className="text-base text-[#111111] mb-2">
                 <ScrollLink to="category" smooth={true} duration={500}>
                   Category
                 </ScrollLink>
               </li>
-              <li className="text-base text-[#111111]">
+              <li className="text-base text-[#111111] mb-2">
                 <ScrollLink to="gallery" smooth={true} duration={500}>
                   Image Gallery
                 </ScrollLink>
@@ -81,13 +81,13 @@ const Header = () => {
             <li className="text-base text-[#111111] mr-8">
               <Link to="/products">Products</Link>
             </li>
-            <li className="text-base text-[#111111]">
+            <li className="text-base text-[#111111] mr-8">
               <Link to="/dashboard">Dashboard</Link>
             </li>
-            <li className="text-base text-[#111111]">
+            <li className="text-base text-[#111111] mr-8">
               <Link to="/cart">Cart</Link>
             </li>
-            <li className="text-base text-[#111111]">
+            <li className="text-base text-[#111111] mr-8">
               <ScrollLink to="category" smooth={true} duration={500}>
                 Category
               </ScrollLink>

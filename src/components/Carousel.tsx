@@ -14,7 +14,7 @@ const Carousel = () => {
         </p>
         <button
           onClick={() => navigate("/products")}
-          className=" btn absolute mt-[400px] mx-[35%] text-2xl bg-[#0080ff] font-bold text-white hover:text-[#111111]"
+          className=" btn absolute mt-[400px] mx-[35%] sm:text-2xl bg-[#0080ff] font-bold text-white hover:text-[#111111] "
         >
           SHOP NOW
         </button>
@@ -37,7 +37,7 @@ const Carousel = () => {
         </p>
         <button
           onClick={() => navigate("/products")}
-          className=" btn absolute mt-[400px] mx-[35%] text-2xl bg-[#0080ff] font-bold text-white hover:text-[#111111]"
+          className=" btn absolute mt-[400px] mx-[35%] sm:text-2xl bg-[#0080ff] font-bold text-white hover:text-[#111111]"
         >
           SHOP NOW
         </button>
@@ -60,7 +60,7 @@ const Carousel = () => {
         </p>
         <button
           onClick={() => navigate("/products")}
-          className=" btn absolute mt-[400px] mx-[35%] text-2xl bg-[#0080ff] font-bold text-white hover:text-[#111111]"
+          className=" btn absolute mt-[400px] mx-[35%] sm:text-2xl bg-[#0080ff] font-bold text-white hover:text-[#111111]"
         >
           SHOP NOW
         </button>
@@ -83,7 +83,7 @@ const Carousel = () => {
         </p>
         <button
           onClick={() => navigate("/products")}
-          className=" btn absolute mt-[400px] mx-[35%] text-2xl bg-[#0080ff] font-bold text-white hover:text-[#111111]"
+          className=" btn absolute mt-[400px] mx-[35%] sm:text-2xl bg-[#0080ff] font-bold text-white hover:text-[#111111]"
         >
           SHOP NOW
         </button>
