@@ -1,9 +1,7 @@
-import productApi from "../redux/features/products/productApi";
+import categoryApi from "../redux/features/products/categoryApi";
 
 const CategorySection = () => {
-  const { data } = productApi.useGetAllCategoriesQuery(undefined);
-
-  console.log(data?.data[0]?.categories);
+  const { data } = categoryApi.useGetAllCategoriesQuery(undefined);
 
   return (
     <section id="category" className="my-12">

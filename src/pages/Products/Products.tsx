@@ -4,6 +4,7 @@ import Card from "../../components/Card";
 import { FormEvent, useState } from "react";
 import productApi from "../../redux/features/products/productApi";
 import debounce from "lodash.debounce";
+import categoryApi from "../../redux/features/products/categoryApi";
 
 export type TProduct = {
   _id: string;
@@ -31,8 +32,7 @@ const Products = () => {
   };
 
   const { data, isLoading } = productApi.useGetAllProductsQuery(query);
-  const { data: categories } = productApi.useGetAllCategoriesQuery(undefined);
-  console.log(data);
+  const { data: categories } = categoryApi.useGetAllCategoriesQuery(undefined);
 
   const handlePageClick = (e: { selected: number }) => {
     setPage(e.selected + 1);

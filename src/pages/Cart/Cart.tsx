@@ -34,10 +34,8 @@ const Cart = () => {
   let cartTotalPrice = 0;
   for (let index = 0; index < products.length; index++) {
     const element = products[index];
-    cartTotalPrice = cartTotalPrice! + element.totalPrice!;
+    cartTotalPrice = cartTotalPrice + element.totalPrice!;
   }
-
-  console.log(cartTotalPrice);
 
   useBeforeUnload(
     "If you refresh the page, any data in your cart may be lost. Are you sure you want to proceed?"

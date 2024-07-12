@@ -4,7 +4,7 @@ import productApi from "../../redux/features/products/productApi";
 
 const ProductDetail = () => {
   const { id } = useParams();
-  console.log(id);
+
   const { data, isLoading } = productApi.useGetSingleProductQuery(id);
 
   if (isLoading) {
@@ -15,7 +15,6 @@ const ProductDetail = () => {
     );
   }
 
-  console.log(data);
   return (
     <div>
       <h1 className="p-8 text-5xl text-[#111111] font-bold">Product Details</h1>

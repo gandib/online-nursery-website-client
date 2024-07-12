@@ -65,10 +65,24 @@ const productCartSlice = createSlice({
         (item) => item._id !== action.payload
       );
     },
+    setQuantityAfterOrder: (state, action: PayloadAction<TProduct>) => {
+      const existing = state.products.find(
+        (product) => product._id === action.payload._id
+      );
+
+      if (existing?._id === action.payload._id) {
+        existing!.newQuantity = existing?.quantity - existing.newQuantity!;
+      }
+    },
   },
 });
 
-export const { addProduct, addPrice, decreasePrice, removeProduct } =
-  productCartSlice.actions;
+export const {
+  addProduct,
+  addPrice,
+  decreasePrice,
+  removeProduct,
+  setQuantityAfterOrder,
+} = productCartSlice.actions;
 
 export default productCartSlice.reducer;

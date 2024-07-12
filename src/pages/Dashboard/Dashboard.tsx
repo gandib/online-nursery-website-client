@@ -3,6 +3,8 @@ import productApi from "../../redux/features/products/productApi";
 import { TProduct } from "../Products/Products";
 import Modal from "../../components/Modal";
 import ProductModal from "../../components/ProductModal";
+import { toast } from "react-toastify";
+import { FaEdit, FaTrash } from "react-icons/fa";
 
 const Dashboard = () => {
   const [id, setId] = useState("");
@@ -27,17 +29,31 @@ const Dashboard = () => {
     (document.getElementById("my_modal_2") as HTMLDialogElement).showModal();
   };
 
-  const confirmDelete = () => {
-    deleteProduct(id);
+  const confirmDelete = async () => {
+    try {
+      const res = await deleteProduct(id).unwrap();
+      toast.success(res.message);
+    } catch (error) {
+      toast.error("Something went wrong!");
+    }
   };
 
-  const addProduct = (data: TProduct) => {
-    createProduct(data);
+  const addProduct = async (data: TProduct) => {
+    try {
+      const res = await createProduct(data).unwrap();
+      toast.success(res.message);
+    } catch (error) {
+      toast.error("Something went wrong!");
+    }
   };
 
-  const updateProduct = (data: TProduct) => {
-    console.log(data);
-    editProduct(data);
+  const updateProduct = async (data: TProduct) => {
+    try {
+      const res = await editProduct(data).unwrap();
+      toast.success(res.message);
+    } catch (error) {
+      toast.error("Something went wrong!");
+    }
   };
 
   if (isLoading) {
@@ -110,7 +126,7 @@ const Dashboard = () => {
                         onClick={() => handlerUpdate(product?._id)}
                         className="btn bg-[#0080ff]"
                       >
-                        Edit
+                        <FaEdit />
                       </button>
                     </th>
                     <th>
@@ -118,7 +134,7 @@ const Dashboard = () => {
                         onClick={() => handlerDelete(product?._id)}
                         className="btn btn-error"
                       >
-                        Delete
+                        <FaTrash />
                       </button>
                     </th>
                   </tr>

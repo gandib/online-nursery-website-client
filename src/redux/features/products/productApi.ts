@@ -63,25 +63,6 @@ const productApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["product"],
     }),
-
-    getAllCategories: builder.query({
-      query: () => {
-        return {
-          url: `/products/categories`,
-          method: "GET",
-        };
-      },
-    }),
-
-    addOrder: builder.mutation({
-      query: (data) => {
-        return {
-          url: `/orders/create-order`,
-          method: "POST",
-          body: data,
-        };
-      },
-    }),
   }),
 });
 

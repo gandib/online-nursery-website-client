@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { useAppSelector } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { useNavigate } from "react-router-dom";
-import productApi from "../../redux/features/products/productApi";
+import { toast } from "react-toastify";
+import orderApi from "../../redux/features/products/orderApi";
+import { setQuantityAfterOrder } from "../../redux/features/productCartSlice";
 
 const Checkout = () => {
   const [name, setName] = useState("");
@@ -9,9 +11,8 @@ const Checkout = () => {
   const [address, setAddress] = useState("");
   const { products } = useAppSelector((state) => state.cartProduct);
   const navigate = useNavigate();
-  const [addOrder, { data }] = productApi.useAddOrderMutation();
-
-  console.log(data);
+  const [addOrder] = orderApi.useAddOrderMutation();
+  const dispatch = useAppDispatch();
 
   const userInfo = {
     name,
@@ -22,7 +23,7 @@ const Checkout = () => {
   let cartTotalPrice = 0;
   for (let index = 0; index < products.length; index++) {
     const element = products[index];
-    cartTotalPrice = cartTotalPrice! + element.totalPrice;
+    cartTotalPrice = cartTotalPrice! + element.totalPrice!;
   }
 
   let giveInfo = false;
@@ -30,7 +31,7 @@ const Checkout = () => {
     giveInfo = true;
   }
 
-  const handleOrder = () => {
+  const handleOrder = async () => {
     for (let index = 0; index < products.length; index++) {
       const product = products[index];
 
@@ -41,9 +42,20 @@ const Checkout = () => {
         phone: userInfo?.phone,
         address: userInfo?.address,
       };
-      addOrder(data);
+
+      if (product.quantity !== 0) {
+        try {
+          const res = await addOrder(data).unwrap();
+          dispatch(setQuantityAfterOrder(product));
+          toast.success(res.message);
+          navigate("/payment");
+        } catch (error) {
+          toast.error("Something went wrong!");
+        }
+      } else {
+        toast.error("Product is out of stock!");
+      }
     }
-    navigate("/payment");
   };
 
   return (
