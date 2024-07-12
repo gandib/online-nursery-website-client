@@ -127,6 +127,7 @@ const Cart = () => {
           <div>
             <button
               onClick={() => navigate("/checkout")}
+              disabled={products.length === 0 && true}
               className="btn bg-[#0080ff] text-white font-bold text-xl w-full"
             >
               Proceed To Checkout
