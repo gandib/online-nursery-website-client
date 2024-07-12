@@ -1,7 +1,12 @@
+import { toast } from "react-toastify";
 import categoryApi from "../redux/features/products/categoryApi";
 
 const CategorySection = () => {
-  const { data } = categoryApi.useGetAllCategoriesQuery(undefined);
+  const { data, isError } = categoryApi.useGetAllCategoriesQuery(undefined);
+
+  if (isError) {
+    toast("Something went wrong!");
+  }
 
   return (
     <section id="category" className="my-12">

@@ -71,7 +71,7 @@ const productCartSlice = createSlice({
       );
 
       if (existing?._id === action.payload._id) {
-        existing!.newQuantity = existing?.quantity - existing.newQuantity!;
+        existing!.quantity = existing?.quantity - existing.newQuantity!;
       }
     },
   },

@@ -1,5 +1,6 @@
 import { FormEvent, useEffect, useState } from "react";
 import productApi from "../redux/features/products/productApi";
+import { toast } from "react-toastify";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const ProductModal = ({ updateProduct, addProduct, productId, setId }: any) => {
@@ -11,7 +12,7 @@ const ProductModal = ({ updateProduct, addProduct, productId, setId }: any) => {
   const [image, setImage] = useState("");
   const [quantity, setQuantity] = useState("");
 
-  const { data } = productApi.useGetSingleProductQuery(productId);
+  const { data, isError } = productApi.useGetSingleProductQuery(productId);
 
   useEffect(() => {
     setTitle(data?.data?.title);
@@ -53,6 +54,10 @@ const ProductModal = ({ updateProduct, addProduct, productId, setId }: any) => {
     setImage("");
     setQuantity("");
   };
+
+  if (isError) {
+    toast.error("Something went wrong!");
+  }
 
   return (
     <div>

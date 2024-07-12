@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { useNavigate } from "react-router-dom";
@@ -49,8 +50,8 @@ const Checkout = () => {
           dispatch(setQuantityAfterOrder(product));
           toast.success(res.message);
           navigate("/payment");
-        } catch (error) {
-          toast.error("Something went wrong!");
+        } catch (error: any) {
+          toast.error(error?.data?.message);
         }
       } else {
         toast.error("Product is out of stock!");

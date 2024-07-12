@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import productApi from "../../redux/features/products/productApi";
 import { TProduct } from "../Products/Products";
@@ -33,8 +34,8 @@ const Dashboard = () => {
     try {
       const res = await deleteProduct(id).unwrap();
       toast.success(res.message);
-    } catch (error) {
-      toast.error("Something went wrong!");
+    } catch (error: any) {
+      toast.error(error?.data?.message);
     }
   };
 
@@ -42,8 +43,8 @@ const Dashboard = () => {
     try {
       const res = await createProduct(data).unwrap();
       toast.success(res.message);
-    } catch (error) {
-      toast.error("Something went wrong!");
+    } catch (error: any) {
+      toast.error(error?.data?.message);
     }
   };
 
@@ -51,8 +52,8 @@ const Dashboard = () => {
     try {
       const res = await editProduct(data).unwrap();
       toast.success(res.message);
-    } catch (error) {
-      toast.error("Something went wrong!");
+    } catch (error: any) {
+      toast.error(error?.data?.message);
     }
   };
 

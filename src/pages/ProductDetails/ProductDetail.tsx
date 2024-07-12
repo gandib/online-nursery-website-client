@@ -1,11 +1,12 @@
 import { useParams } from "react-router-dom";
 import Card from "../../components/Card";
 import productApi from "../../redux/features/products/productApi";
+import { toast } from "react-toastify";
 
 const ProductDetail = () => {
   const { id } = useParams();
 
-  const { data, isLoading } = productApi.useGetSingleProductQuery(id);
+  const { data, isLoading, isError } = productApi.useGetSingleProductQuery(id);
 
   if (isLoading) {
     return (
@@ -13,6 +14,10 @@ const ProductDetail = () => {
         <span className="loading loading-spinner text-success"></span>
       </div>
     );
+  }
+
+  if (isError) {
+    toast.error("Something went wrong!");
   }
 
   return (

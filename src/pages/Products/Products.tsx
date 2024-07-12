@@ -5,6 +5,7 @@ import { FormEvent, useState } from "react";
 import productApi from "../../redux/features/products/productApi";
 import debounce from "lodash.debounce";
 import categoryApi from "../../redux/features/products/categoryApi";
+import { toast } from "react-toastify";
 
 export type TProduct = {
   _id: string;
@@ -31,7 +32,7 @@ const Products = () => {
     searchTerm: search,
   };
 
-  const { data, isLoading } = productApi.useGetAllProductsQuery(query);
+  const { data, isLoading, isError } = productApi.useGetAllProductsQuery(query);
   const { data: categories } = categoryApi.useGetAllCategoriesQuery(undefined);
 
   const handlePageClick = (e: { selected: number }) => {
@@ -58,6 +59,10 @@ const Products = () => {
         <span className="loading loading-spinner text-success"></span>
       </div>
     );
+  }
+
+  if (isError) {
+    toast.error("Something went wrong!");
   }
 
   return (
@@ -122,7 +127,7 @@ const Products = () => {
               }`}
             >
               <li>
-                <button onClick={() => setFilter("")}>Sort by default</button>
+                <button onClick={() => setFilter("")}>Filter by default</button>
               </li>
               {categories?.data[0]?.categories.map(
                 (category: string, index: number) => (
