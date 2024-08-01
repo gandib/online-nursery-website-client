@@ -7,10 +7,16 @@ import debounce from "lodash.debounce";
 import categoryApi from "../../redux/features/products/categoryApi";
 import { toast } from "react-toastify";
 
+export type TCategory = {
+  _id: string;
+  name: string;
+  isDeleted: boolean;
+};
+
 export type TProduct = {
   _id: string;
   title: string;
-  category: string;
+  category: TCategory;
   description: string;
   price: number;
   rating: number;
@@ -129,15 +135,13 @@ const Products = () => {
               <li>
                 <button onClick={() => setFilter("")}>Filter by default</button>
               </li>
-              {categories?.data[0]?.categories.map(
-                (category: string, index: number) => (
-                  <li key={index}>
-                    <button onClick={() => setFilter(category)}>
-                      {category}
-                    </button>
-                  </li>
-                )
-              )}
+              {categories?.data?.map((category: TCategory) => (
+                <li key={category._id}>
+                  <button onClick={() => setFilter(category.name)}>
+                    {category.name}
+                  </button>
+                </li>
+              ))}
             </ul>
           </div>
         </div>

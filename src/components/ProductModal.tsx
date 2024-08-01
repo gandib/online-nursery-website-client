@@ -1,11 +1,14 @@
 import { FormEvent, useEffect, useState } from "react";
 import productApi from "../redux/features/products/productApi";
 import { toast } from "react-toastify";
+import categoryApi from "../redux/features/products/categoryApi";
+import { TCategory } from "../pages/Products/Products";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const ProductModal = ({ updateProduct, addProduct, productId, setId }: any) => {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
+  const [selectCategory, setSelectCategory] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [rating, setRating] = useState("");
@@ -13,10 +16,11 @@ const ProductModal = ({ updateProduct, addProduct, productId, setId }: any) => {
   const [quantity, setQuantity] = useState("");
 
   const { data, isError } = productApi.useGetSingleProductQuery(productId);
+  const { data: categories } = categoryApi.useGetAllCategoriesQuery(undefined);
 
   useEffect(() => {
     setTitle(data?.data?.title);
-    setCategory(data?.data?.category);
+    setCategory(data?.data?.category?._id);
     setDescription(data?.data?.description);
     setPrice(data?.data?.price);
     setRating(data?.data?.rating);
@@ -28,13 +32,15 @@ const ProductModal = ({ updateProduct, addProduct, productId, setId }: any) => {
     const target: any = e.target;
     const info = {
       title: title,
-      category: target.category.value,
+      category: selectCategory,
       description: target.description.value,
       price: Number(target.price.value),
       rating: Number(target.rating.value),
       image: target.image.value,
       quantity: Number(target.quantity.value),
     };
+    console.log(info);
+    console.log(selectCategory, category);
 
     if (productId) {
       updateProduct({ _id: data?.data?._id, info });
@@ -76,14 +82,35 @@ const ProductModal = ({ updateProduct, addProduct, productId, setId }: any) => {
                 name="title"
                 className="input input-bordered w-full max-w-10/12 mb-1"
               />
-              <input
+              {/* <input
                 type="text"
                 onChange={(e) => setCategory(e.target.value)}
                 value={category}
                 placeholder="Category"
                 name="category"
                 className="input input-bordered w-full max-w-10/12 mb-1"
-              />
+              /> */}
+
+              <select className="select select-bordered w-full  max-w-10/12 mb-1">
+                {!category && (
+                  <option disabled selected>
+                    Select a Category
+                  </option>
+                )}
+                {category && (
+                  <option disabled selected>
+                    {data?.data?.category?.name}
+                  </option>
+                )}
+                {categories?.data?.map((item: TCategory) => (
+                  <option
+                    onClick={() => setSelectCategory(item?._id)}
+                    key={item?._id}
+                  >
+                    {item?.name}
+                  </option>
+                ))}
+              </select>
               <textarea
                 // type="text"
                 onChange={(e) => setDescription(e.target.value)}

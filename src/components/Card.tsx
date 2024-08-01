@@ -23,7 +23,7 @@ const Card = ({
     image,
     price,
     rating,
-    category,
+    category: category._id,
     description,
     _id,
     quantity,
@@ -42,12 +42,21 @@ const Card = ({
       }`}
     >
       <figure>
-        <img src={image} className="mx-4 border rounded-md" alt={title} />
+        <img
+          src={image}
+          className="mx-4 border rounded-md h-[330px]"
+          alt={title}
+        />
       </figure>
       <div className="card-body">
         <h2 className="card-title">{title}</h2>
         <h2 className="card-title">Price: {price}</h2>
-        {category ? <h2 className="card-title">Category: {category}</h2> : ""}
+        <h2 className="card-title">Quantity: {quantity}</h2>
+        {category ? (
+          <h2 className="card-title">Category: {category.name}</h2>
+        ) : (
+          ""
+        )}
 
         <div className="rating">
           <input
