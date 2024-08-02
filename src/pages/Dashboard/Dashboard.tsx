@@ -7,17 +7,17 @@ const Dashboard = () => {
   return (
     <div className="grid grid-cols-12 min-h-screen">
       {/* <ProductDashboard /> */}
-      <div className="col-span-3 bg-slate-300 p-4">
+      <div className="col-span-3 bg-slate-300 sm:p-4 p-1">
         <div className="">
           <button
             onClick={() => setPage("product")}
-            className="btn w-full text-xl font-bold my-4"
+            className="btn w-full lg:text-xl md:text-base text-xs font-bold sm:my-4 my-1"
           >
             Product Management
           </button>
           <button
             onClick={() => setPage("category")}
-            className="btn w-full text-xl font-bold "
+            className="btn w-full lg:text-xl md:text-base text-xs font-bold"
           >
             Category Management
           </button>

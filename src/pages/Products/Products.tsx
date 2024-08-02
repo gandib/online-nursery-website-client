@@ -137,7 +137,7 @@ const Products = () => {
               </li>
               {categories?.data?.map((category: TCategory) => (
                 <li key={category._id}>
-                  <button onClick={() => setFilter(category.name)}>
+                  <button onClick={() => setFilter(category._id)}>
                     {category.name}
                   </button>
                 </li>
